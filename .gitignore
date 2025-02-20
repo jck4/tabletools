@@ -52,3 +52,5 @@ backend!/tmp/storage/.keep
 backend/public/assets
 backend/config/master.key
 backend/public/fishies
+
+frontend/node_modules
