@@ -1,0 +1,5 @@
+firebase_cert_refresh:
+  cron: "0 * * * *"       # Every hour at minute 0
+  class: "FirebaseCertRefresherWorker"
+  queue: default
+  description: "Refresh Firebase certificates every hour"

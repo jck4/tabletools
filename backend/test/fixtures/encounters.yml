@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  setting: MyText
+  factions: 
+  clues: 
+  objectives: 
+  environmental_hazards: 
+  reactive_elements: 
+  outcomes: 
+
+two:
+  title: MyString
+  setting: MyText
+  factions: 
+  clues: 
+  objectives: 
+  environmental_hazards: 
+  reactive_elements: 
+  outcomes: 

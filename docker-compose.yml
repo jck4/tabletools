@@ -13,10 +13,14 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
       OPENAI_API_KEY: ${OPENAI_API_KEY}
       RAILS_ENV: development
+      FIREBASE_PROJECT_ID: ${FIREBASE_PROJECT_ID}
     ports:
       - "3000:3000"
     depends_on:
       - db
+      - redis
+      - sidekiq
+
     volumes:
       - ./backend:/backend
 
@@ -33,5 +37,24 @@ services:
     ports:
       - "5432:5432"
 
+  redis:
+    image: redis:alpine
+    container_name: redis_server
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  sidekiq:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: bundle exec sidekiq
+    depends_on:
+      - db
+      - redis
+    environment:
+      RAILS_ENV: development
+    volumes:
+      - ./backend:/backend
 volumes:
   db_data:

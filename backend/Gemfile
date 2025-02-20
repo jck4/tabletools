@@ -41,3 +41,9 @@ group :development, :test do
 end
 
 
+
+gem "sidekiq", "~> 7.3"
+
+gem "sidekiq-cron", "~> 2.1"
+
+gem "jwt", "~> 2.10"

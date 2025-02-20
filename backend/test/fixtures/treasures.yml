@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  treasure_type: MyString
+  rarity: MyString
+  description: MyText
+  properties: 
+
+two:
+  name: MyString
+  treasure_type: MyString
+  rarity: MyString
+  description: MyText
+  properties: 
