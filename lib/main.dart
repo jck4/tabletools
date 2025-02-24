@@ -4,6 +4,7 @@ import 'services/premium_manager.dart';
 import 'ui/navigation.dart'; // Import MainLayout or GeneratorWidget
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(
       providers: [
