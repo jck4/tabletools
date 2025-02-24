@@ -1,2 +1,0 @@
-class Npc < ApplicationRecord
-end

@@ -1,2 +1,0 @@
-class Trap < ApplicationRecord
-end

@@ -1,2 +1,0 @@
-class Encounter < ApplicationRecord
-end
