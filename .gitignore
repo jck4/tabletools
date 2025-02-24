@@ -12,67 +12,26 @@
 .swiftpm/
 migrate_working_dir/
 
-# IDE Specific (IntelliJ / Android Studio)
+# IntelliJ related
 *.iml
 *.ipr
 *.iws
 .idea/
 
-# VS Code
-.vscode/
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
 
 # Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
 /build/
-**/doc/api/
-**/ios/Flutter/.last_build_id
-
-*.xcuserstate
-
-# Android related
-android/.gradle/
-android/app/debug
-android/app/profile
-android/app/release
-android/key.properties
-android/local.properties
-android/app/google-services.json
-android/app/src/debug/
-android/app/src/profile/
-android/app/src/release/
-
-# macOS related
-macos/.flutter-plugins
-macos/.flutter-plugins-dependencies
-macos/Flutter/ephemeral/
-macos/.symlinks/
-macos/.generated/
-macos/Pods/
-macos/Runner.xcworkspace
-
-# Linux related
-linux/flutter/
-linux/.flutter-plugins
-linux/.flutter-plugins-dependencies
-
-# Windows related
-windows/flutter/
-windows/.flutter-plugins
-windows/.flutter-plugins-dependencies
-
-# Web related
-web/.dart_tool/
-web/flutter/
-
-# Firebase related
-firebase.json
-*.firebaserc
-android/app/google-services.json
-ios/Runner/GoogleService-Info.plist
 
 # Symbolication related
 app.*.symbols
@@ -80,8 +39,7 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
-# Generated files
-*.lock
-*.log
-pubspec.lock
-pubspec_overrides.yaml
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
