@@ -31,14 +31,6 @@ migrate_working_dir/
 **/doc/api/
 **/ios/Flutter/.last_build_id
 
-# Xcode related
-ios/Pods/
-ios/.symlinks/
-ios/Flutter/App.framework
-ios/Flutter/Flutter.framework
-ios/Flutter/Flutter.podspec
-ios/.generated/
-
 *.xcuserstate
 
 # Android related
