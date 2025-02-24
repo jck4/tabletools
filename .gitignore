@@ -1,56 +1,95 @@
-*.tfstate
-*.tfstate.backup
-.terraform/
-.terraform.lock.hcl
-crash.log
-terraform.tfvars
-terraform.tfvars.json
-
-.env
-.env.local
-.env.*.local
-*.secrets
-
-docker-compose.override.yml
-docker-compose.override.yaml
-docker-compose.env
-docker-compose*.log
-.dockerignore
-
-caddy_data/
-caddy_config/
-
-foundry_data/
-foundryvtt_config.json
-
-.vscode/
-.idea/
-*.swp
-*.swo
-*.swn
-
+# Miscellaneous
+*.class
 *.log
-*.pid
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IDE Specific (IntelliJ / Android Studio)
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# VS Code
+.vscode/
+
+# Flutter/Dart/Pub related
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+**/doc/api/
+**/ios/Flutter/.last_build_id
+
+# Xcode related
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/.generated/
+*.xcworkspace
+*.xcuserstate
+
+# Android related
+android/.gradle/
+android/app/debug
+android/app/profile
+android/app/release
+android/key.properties
+android/local.properties
+android/app/google-services.json
+android/app/src/debug/
+android/app/src/profile/
+android/app/src/release/
+
+# macOS related
+macos/.flutter-plugins
+macos/.flutter-plugins-dependencies
+macos/Flutter/ephemeral/
+macos/.symlinks/
+macos/.generated/
+macos/Pods/
+macos/Runner.xcworkspace
+
+# Linux related
+linux/flutter/
+linux/.flutter-plugins
+linux/.flutter-plugins-dependencies
+
+# Windows related
+windows/flutter/
+windows/.flutter-plugins
+windows/.flutter-plugins-dependencies
+
+# Web related
+web/.dart_tool/
+web/flutter/
+
+# Firebase related
+firebase.json
+*.firebaserc
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Generated files
 *.lock
-*.tmp
-
-backend/.bundle
-backend/.env*
-backend!/.env*.erb
-backend/log/*
-backend/tmp/*
-backend!/log/.keep
-backend!/tmp/.keep
-backend/tmp/pids/*
-backend!/tmp/pids/
-backend!/tmp/pids/.keep
-backend/storage/*
-backend!/storage/.keep
-backend/tmp/storage/*
-backend!/tmp/storage/
-backend!/tmp/storage/.keep
-backend/public/assets
-backend/config/master.key
-backend/public/fishies
-
-frontend/node_modules
+*.log
+pubspec.lock
+pubspec_overrides.yaml
