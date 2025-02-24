@@ -3,9 +3,9 @@ set -e
 
 cd $CI_PRIMARY_REPOSITORY_PATH
 
-# 🚀 Ensure we're on the correct branch (fixed method)
+# 🚀 Ensure we're on the correct branch (Fixed default branch detection)
 git fetch origin
-DEFAULT_BRANCH=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
+DEFAULT_BRANCH=$(git branch -r | grep 'origin/' | grep -v 'HEAD' | awk -F'/' '{print $2}' | head -n 1)
 
 # Only checkout if not already on the correct branch
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
