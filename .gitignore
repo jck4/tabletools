@@ -38,7 +38,7 @@ ios/Flutter/App.framework
 ios/Flutter/Flutter.framework
 ios/Flutter/Flutter.podspec
 ios/.generated/
-*.xcworkspace
+
 *.xcuserstate
 
 # Android related
