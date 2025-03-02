@@ -1,5 +1,5 @@
-name: tabletools_flutter
-description: "A new Flutter project."
+name: tabletools
+description: "DM Toolkit"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -18,12 +18,17 @@ dependencies:
   cupertino_icons: ^1.0.8
   provider: ^6.1.2 
   flutter_native_splash: ^2.4.4
+  uni_links: ^0.5.0
+  shared_preferences: ^2.5.2
+  in_app_purchase: ^3.1.10
+  rename_app: ^1.6.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.14.3"
   flutter_lints: ^5.0.0
-
+  
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
