@@ -5,7 +5,7 @@ import 'package:tabletools/utils/storage_helper.dart';
 
 class ApiService {
   static const String _devBaseUrl = "https://tabletools.ngrok.dev/api";
-  static const String _prodBaseUrl = "https://tabletools.io/api";
+  static const String _prodBaseUrl = "https://www.tabletools.io/api";
   static String get baseUrl => isProduction ? _prodBaseUrl : _devBaseUrl;
 
   static void printEnv() {
