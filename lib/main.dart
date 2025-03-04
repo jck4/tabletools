@@ -1,10 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'services/auth_provider.dart';
+import 'services/auth_service.dart';
 import 'ui/navigation.dart';
-import 'ui/login_screen.dart';
+import 'ui/screens/login_screen.dart';
 
 const bool isProduction = bool.fromEnvironment('IS_PRODUCTION', defaultValue: false);
 
@@ -12,7 +11,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   if (!isProduction) {
-    HttpOverrides.global = MyHttpOverrides();
+    HttpOverrides.global = DevHttpOverrides();
     print("⚠️ SSL Verification is DISABLED (Development Mode)");
   } else {
     print("✅ SSL Verification is ENABLED (Production Mode)");
@@ -23,12 +22,12 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()), 
       ],
-      child: MyApp(),
+      child: Tabletools(),
     ),
   );
 }
 
-class MyHttpOverrides extends HttpOverrides {
+class DevHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
@@ -36,7 +35,7 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
-class MyApp extends StatelessWidget {
+class Tabletools extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<AuthProvider>(

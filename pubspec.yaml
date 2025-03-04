@@ -10,7 +10,6 @@ version: 1.0.0+1
 environment:
   sdk: ^3.6.2
 
-
 dependencies:
   flutter:
     sdk: flutter
@@ -22,7 +21,9 @@ dependencies:
   shared_preferences: ^2.5.2
   in_app_purchase: ^3.1.10
   rename_app: ^1.6.2
-
+  flutter_secure_storage: ^9.0.0
+  universal_html: ^2.2.4
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -60,5 +61,12 @@ flutter_native_splash:
 flutter:
   assets:
     - assets/bg.jpg
+    - assets/parchment.jpg
   uses-material-design: true
+
+
+fonts:
+  - family: MedievalSharp
+    fonts:
+      - asset: assets/fonts/MedievalSharp-Regular.ttf
 

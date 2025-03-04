@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../services/api_service.dart';
-import '../services/auth_provider.dart';
+import 'package:tabletools/services/api_service.dart';
+import 'package:tabletools/services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
@@ -18,7 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
   String _errorMessage = "";
   String _successMessage = "";
-  bool _verificationPending = false;
 
   @override
   void initState() {
@@ -45,7 +45,6 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = true;
       _errorMessage = "";
       _successMessage = "";
-      _verificationPending = false;
     });
 
     Map<String, dynamic> response;
@@ -71,19 +70,21 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         _successMessage = response["message"] ?? "Success!";
       });
-      if (_isRegisterMode) {
-        setState(() {
-          _verificationPending = true;
-        });
-      } else {
-        if (authToken != null) {
-          Provider.of<AuthProvider>(context, listen: false).login(authToken);
-        }
+
+      if (!_isRegisterMode && authToken != null) {
+        Provider.of<AuthProvider>(context, listen: false).login(authToken);
       }
     } else {
-      setState(() {
-        _errorMessage = response["message"] ?? "Something went wrong";
-      });
+      // ✅ Show specific message for unverified accounts
+      if (response["message"]?.contains("not verified") == true) {
+        setState(() {
+          _errorMessage = "Your account has not been verified. Please check your email.";
+        });
+      } else {
+        setState(() {
+          _errorMessage = response["message"] ?? "Something went wrong";
+        });
+      }
     }
   }
 

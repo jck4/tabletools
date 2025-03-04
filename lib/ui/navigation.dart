@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
 import 'compendium.dart';
-import 'generator_widget.dart';
-import 'package:provider/provider.dart'; // ✅ Import Provider
-import '../services/auth_provider.dart'; // ✅ Import AuthProvider
+import 'generator/generator_selection.dart';
+import 'package:provider/provider.dart'; 
+import 'package:tabletools/services/auth_service.dart'; 
+import 'package:tabletools/ui/screens/profile_screen.dart';
 class MainLayout extends StatefulWidget {
   @override
   _MainLayoutState createState() => _MainLayoutState();
@@ -14,7 +15,7 @@ class _MainLayoutState extends State<MainLayout> {
   bool _isLoading = false;
   static final List<Widget> _pages = [
     HomeWidget(),
-    CompendiumWidget(),
+    CompendiumScreen(),
     GeneratorWidget(),
   ];
 
@@ -40,6 +41,15 @@ void _logout() async {
       appBar: AppBar(
         title: Text("TableTools"),
         actions: [
+          IconButton(
+            icon: Icon(Icons.person),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfileScreen()),
+              );
+            },
+          ),
             IconButton(
             icon: Icon(Icons.logout),
             onPressed: _logout, // ✅ Calls the logout function
