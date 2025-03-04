@@ -5,7 +5,7 @@ import 'services/auth_service.dart';
 import 'ui/navigation.dart';
 import 'ui/screens/login_screen.dart';
 
-const bool isProduction = bool.fromEnvironment('IS_PRODUCTION', defaultValue: false);
+const bool isProduction = bool.fromEnvironment('IS_PRODUCTION', defaultValue: true);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
