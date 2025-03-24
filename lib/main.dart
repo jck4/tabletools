@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'services/auth_service.dart';
 import 'ui/navigation.dart';
 import 'ui/screens/login_screen.dart';
+import 'utils/app_theme.dart';
 
 const bool isProduction = bool.fromEnvironment('IS_PRODUCTION', defaultValue: true);
 
@@ -44,7 +45,7 @@ class Tabletools extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'TableTools',
-          theme: ThemeData(primarySwatch: Colors.indigo),
+          theme: AppTheme.getTheme(),
           home: authProvider.isLoggedIn ? MainLayout() : LoginScreen(), // ✅ Redirect based on token state
         );
       },

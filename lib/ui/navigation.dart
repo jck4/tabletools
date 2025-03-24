@@ -5,6 +5,8 @@ import 'generator/generator_selection.dart';
 import 'package:provider/provider.dart'; 
 import 'package:tabletools/services/auth_service.dart'; 
 import 'package:tabletools/ui/screens/profile_screen.dart';
+import 'package:tabletools/utils/app_theme.dart';
+
 class MainLayout extends StatefulWidget {
   @override
   _MainLayoutState createState() => _MainLayoutState();
@@ -25,9 +27,9 @@ class _MainLayoutState extends State<MainLayout> {
     });
   }
 
-void _logout() async {
-  Provider.of<AuthProvider>(context, listen: false).logout(); 
-}
+  void _logout() async {
+    Provider.of<AuthProvider>(context, listen: false).logout(); 
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +39,28 @@ void _logout() async {
       );
     }
 
+    // Define titles for each tab
+    final List<String> _pageTitles = [
+      "TableTools",
+      "Compendium",
+      "Generator", 
+    ];
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("TableTools"),
+        title: Text(
+          _pageTitles[_selectedIndex],
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: _selectedIndex == 1 ? AppTheme.textOnPrimary : null, // Special styling for Compendium
+          ),
+        ),
+        backgroundColor: _selectedIndex == 1 ? AppTheme.primaryDark : null, // Special styling for Compendium
+        elevation: _selectedIndex == 1 ? 4 : null, // Add elevation for Compendium
+        iconTheme: IconThemeData(
+          color: _selectedIndex == 1 ? AppTheme.textOnPrimary : null, // Set icon color for Compendium
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.person),
@@ -50,15 +71,15 @@ void _logout() async {
               );
             },
           ),
-            IconButton(
+          IconButton(
             icon: Icon(Icons.logout),
-            onPressed: _logout, // ✅ Calls the logout function
+            onPressed: _logout,
           ),
         ],
       ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -73,6 +94,7 @@ void _logout() async {
           ),
         ],
         currentIndex: _selectedIndex,
+        selectedItemColor: AppTheme.primary,
         onTap: _onItemTapped,
       ),
     );

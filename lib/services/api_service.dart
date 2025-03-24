@@ -394,4 +394,38 @@ static Future<Map<String, dynamic>> deleteFromCompendium(
     }
   }
 
+  /// Update an entry in the compendium
+  static Future<Map<String, dynamic>> updateCompendiumEntry(String category, String id, Map<String, dynamic> data) async {
+    final url = "$baseUrl/compendium/update";
+    print("📡 API Request: POST $url");
+
+    try {
+      String? token = await _getAuthToken();
+      if (token == null || token.isEmpty)
+        throw Exception("Unauthorized: No JWT token found.");
+
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer $token",
+        },
+        body: json.encode({"category": category, "entry": data}),
+      );
+
+      final responseBody = json.decode(response.body);
+      
+      if (response.statusCode == 200) {
+        print("✅ API Response: ${response.body}");
+        return responseBody; // ✅ Return the response to the UI
+      } else {
+        print("⚠️ API Error: ${response.statusCode} ${response.body}");
+        throw Exception(responseBody["message"] ?? "Failed to update entry.");
+      }
+    } catch (e) {
+      print("❌ API Exception: $e");
+      throw Exception("API request failed: $e");
+    }
+  }
+
 }

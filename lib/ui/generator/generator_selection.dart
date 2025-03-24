@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'generator_screen.dart';
+import '../../utils/app_theme.dart';
 
 class GeneratorWidget extends StatefulWidget {
   @override
@@ -7,12 +8,37 @@ class GeneratorWidget extends StatefulWidget {
 }
 
 class GeneratorWidgetState extends State<GeneratorWidget> {
-  final List<String> generatorTypes = [
-    "encounter",
-    "trap",
-    "quest",
-    "npc",
-    "treasure",
+  final List<Map<String, dynamic>> generatorTypes = [
+    {
+      "type": "encounter",
+      "icon": AppTheme.categoryIcons['encounter'],
+      "color": AppTheme.categoryColors['encounter'],
+      "description": "Create random encounters for your adventure"
+    },
+    {
+      "type": "trap", 
+      "icon": AppTheme.categoryIcons['trap'],
+      "color": AppTheme.categoryColors['trap'],
+      "description": "Generate dangerous traps and hazards"
+    },
+    {
+      "type": "quest",
+      "icon": AppTheme.categoryIcons['quest'],
+      "color": AppTheme.categoryColors['quest'],
+      "description": "Create unique quests and missions"
+    },
+    {
+      "type": "npc",
+      "icon": AppTheme.categoryIcons['npc'],
+      "color": AppTheme.categoryColors['npc'],
+      "description": "Generate characters with detailed backgrounds"
+    },
+    {
+      "type": "treasure",
+      "icon": AppTheme.categoryIcons['treasure'],
+      "color": AppTheme.categoryColors['treasure'],
+      "description": "Create magical items and treasure hoards"
+    },
   ];
 
   void _openGenerator(String generatorType) {
@@ -28,86 +54,145 @@ class GeneratorWidgetState extends State<GeneratorWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Image.asset('assets/bg.jpg', fit: BoxFit.cover),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/parchment.jpg'),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+              Colors.white.withOpacity(0.8),
+              BlendMode.lighten,
+            ),
           ),
-          SafeArea(
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Text(
-                    "Select a Generator",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      shadows: [
-                        Shadow(
-                          offset: Offset(2, 2),
-                          blurRadius: 4,
-                          color: Colors.black38,
-                        ),
-                      ],
-                    ),
+        ),
+        child: Column(
+          children: [
+            // Header with instructions
+            Container(
+              width: double.infinity,
+              margin: EdgeInsets.fromLTRB(16, 16, 16, 8),
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: AppTheme.background.withOpacity(0.9),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: AppTheme.divider),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 4,
+                    offset: Offset(0, 2),
                   ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    child: GridView.builder(
-                      itemCount: generatorTypes.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 12,
-                        mainAxisSpacing: 12,
-                        childAspectRatio: 1.5,
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.auto_fix_high, color: AppTheme.primary, size: 24),
+                      SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          "Content Generator",
+                          style: AppTheme.titleStyle,
+                        ),
                       ),
-                      itemBuilder: (context, index) {
-                        String type = generatorTypes[index];
-                        return GestureDetector(
-                          onTap: () => _openGenerator(type),
-                          child: Container(
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    "Create dynamic content for your tabletop games with our specialized generators.",
+                    style: AppTheme.subtitleStyle,
+                  ),
+                ],
+              ),
+            ),
+            
+            // Generator cards
+            Expanded(
+              child: ListView.builder(
+                padding: EdgeInsets.all(16),
+                itemCount: generatorTypes.length,
+                itemBuilder: (context, index) {
+                  final generator = generatorTypes[index];
+                  return Card(
+                    elevation: 4,
+                    margin: EdgeInsets.only(bottom: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      side: BorderSide(color: AppTheme.divider, width: 1),
+                    ),
+                    child: InkWell(
+                      onTap: () => _openGenerator(generator["type"]),
+                      borderRadius: BorderRadius.circular(12),
+                      child: Column(
+                        children: [
+                          // Header
+                          Container(
+                            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.white.withOpacity(0.85),
-                                  Colors.white.withOpacity(0.85),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
+                              color: generator["color"],
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(12),
+                                topRight: Radius.circular(12),
                               ),
-                              borderRadius: BorderRadius.circular(12),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  blurRadius: 6,
-                                  offset: Offset(2, 2),
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(generator["icon"], color: Colors.white, size: 28),
+                                SizedBox(width: 12),
+                                Text(
+                                  generator["type"].toUpperCase(),
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    letterSpacing: 1.2,
+                                  ),
                                 ),
                               ],
                             ),
-                            child: Center(
-                              child: Text(
-                                type.toUpperCase(),
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                          ),
+                          // Body
+                          Container(
+                            padding: EdgeInsets.all(16),
+                            width: double.infinity,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  generator["description"],
+                                  style: AppTheme.subtitleStyle,
                                 ),
-                              ),
+                                SizedBox(height: 16),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: ElevatedButton.icon(
+                                    onPressed: () => _openGenerator(generator["type"]),
+                                    icon: Icon(Icons.play_arrow),
+                                    label: Text("GENERATE"),
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: generator["color"],
+                                      foregroundColor: Colors.white,
+                                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        );
-                      },
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-              ],
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
