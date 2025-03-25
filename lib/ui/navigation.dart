@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:tabletools/services/auth_service.dart'; 
 import 'package:tabletools/ui/screens/profile_screen.dart';
 import 'package:tabletools/utils/app_theme.dart';
+import 'quick_generators/quick_generator_fab.dart';
 
 class MainLayout extends StatefulWidget {
   @override
@@ -53,13 +54,13 @@ class _MainLayoutState extends State<MainLayout> {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
-            color: _selectedIndex == 1 ? AppTheme.textOnPrimary : null, // Special styling for Compendium
+            color: _selectedIndex == 1 ? AppTheme.textOnPrimary : AppTheme.textOnPrimary, // Consistent text color
           ),
         ),
-        backgroundColor: _selectedIndex == 1 ? AppTheme.primaryDark : null, // Special styling for Compendium
-        elevation: _selectedIndex == 1 ? 4 : null, // Add elevation for Compendium
+        backgroundColor: _selectedIndex == 1 ? AppTheme.primaryDark : AppTheme.primaryDark, // Consistent background
+        elevation: 4, // Consistent elevation
         iconTheme: IconThemeData(
-          color: _selectedIndex == 1 ? AppTheme.textOnPrimary : null, // Set icon color for Compendium
+          color: AppTheme.textOnPrimary, // Consistent icon color for all tabs
         ),
         actions: [
           IconButton(
